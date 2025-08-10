@@ -12,7 +12,6 @@ pipeline {
                 checkout scm
             }
         }
-
         stage('Install & Test') {
             steps {
                 // Install npm dependencies
