@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     environment {
         DOCKER_IMAGE = "22000303228/auto-deploy-demo:latest"
         // Kubernetes kubeconfig credential ID stored in Jenkins Credentials
