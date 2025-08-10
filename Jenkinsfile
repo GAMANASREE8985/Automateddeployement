@@ -6,7 +6,6 @@ pipeline {
         // Kubernetes kubeconfig credential ID stored in Jenkins Credentials
         KUBE_CONFIG = credentials('kubeconfig')
     }
-
     stages {
         stage('Checkout') {
             steps {
