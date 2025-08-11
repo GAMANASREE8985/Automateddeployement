@@ -1,12 +1,20 @@
-const express = require('express');
-const app = express();
+const app = require('./app');
+const request = require('supertest');
 
-app.get('/', (req, res) => {
-  res.send('Hello, Automated Deployment!');
+let server;
+
+beforeAll((done) => {
+  server = app.listen(3000, () => {
+    done();
+  });
 });
 
-app.listen(3000, () => {
-  console.log('App running on http://localhost:3000');
+afterAll((done) => {
+  server.close(done);
 });
 
-module.exports = app;  // Export for testing
+test('GET / should return Hello message', async () => {
+  const response = await request(server).get('/');
+  expect(response.status).toBe(200);
+  expect(response.text).toBe('Hello'); // or whatever your app returns
+});
