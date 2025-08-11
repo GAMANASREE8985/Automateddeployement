@@ -1,13 +1,12 @@
 const express = require('express');
 const app = express();
 
-// your middleware/routes here
+app.get('/', (req, res) => {
+  res.send('Hello, Automated Deployment!');
+});
 
-// Only start server if run directly
-if (require.main === module) {
-  app.listen(3000, () => {
-    console.log('App running on http://localhost:3000');
-  });
-}
+app.listen(3000, () => {
+  console.log('App running on http://localhost:3000');
+});
 
-module.exports = app;  // Export the app instance
+module.exports = app;  // Export for testing
