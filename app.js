@@ -1,20 +1,13 @@
-const app = require('./app');
-const request = require('supertest');
+const express = require('express');
+const app = express();
 
-let server;
+// your middleware/routes here
 
-beforeAll((done) => {
-  server = app.listen(3000, () => {
-    done();
+// Only start server if run directly
+if (require.main === module) {
+  app.listen(3000, () => {
+    console.log('App running on http://localhost:3000');
   });
-});
+}
 
-afterAll((done) => {
-  server.close(done);
-});
-
-test('GET / should return Hello message', async () => {
-  const response = await request(server).get('/');
-  expect(response.status).toBe(200);
-  expect(response.text).toBe('Hello'); // or whatever your app returns
-});
+module.exports = app;  // Export the app instance
