@@ -1,26 +1,23 @@
 pipeline {
     agent any
-
     environment {
         DOCKER_IMAGE = "2200030228/auto-deploy-demo:latest"
         // Kubernetes kubeconfig credential ID stored in Jenkins Credentials
         KUBE_CONFIG = credentials('kubeconfig')
     }
-
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-
         stage('Install & Test') {
             steps {
                 // Install npm dependencies
                 sh 'npm install'
 
                 // Run tests using npx to fix jest permission issue
-                sh 'npx jest'
+               sh 'npx jest'
             }
         }
 
